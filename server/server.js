@@ -38,6 +38,8 @@ app.use(session({
     store: sessionStore
 }));
 
+const port = process.env.PORT || 3000;
+
 //Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -88,11 +90,11 @@ require('../realtime/io')(io);
 app.use(mainroutes);
 app.use(userroutes);
 
-http.listen(3000, (err) => {
+http.listen(port, (err) => {
     if(err){
         console.log(err);
     }else{
-        console.log("Server running on Port 3000");
+        console.log("Server is running");
     }
 });
 
