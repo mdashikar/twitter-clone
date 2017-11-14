@@ -12,7 +12,7 @@
      socket.on('incommingTweet',function(data){
         console.log(data);
         var html = '';
-        html += ' <div class="row tweets" ><div class="col-md-4"><a href="#"><img src="'+ data.user.photo +'"></a></div><div class="col-md-8"><h4>'+ data.user.name +'</h4><p>'+ data.data.content +'</p></div></div>' ;
+        html += ' <div class="row tweets" ><div class="col-md-4"><a href="/user/'+data.user._id+'"><img src="'+ data.user.photo +'"></a></div><div class="col-md-8"><h4>'+ data.user.name +'</h4><p>'+ data.data.content +'</p></div></div>' ;
 
         $('#tweets').prepend(html);
      });

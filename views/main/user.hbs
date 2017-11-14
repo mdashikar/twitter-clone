@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h4>{{ foundUser.name }}</h4>
+        <a href="/user/{{ foundUser._id }}"><img src="{{ foundUser.photo }}" width="180" height="120"></a> 
+        <br><br>
+        {{#if currentUser}}
+
+        {{else}}
+            <input type="hidden" id="user_id" value="{{foundUser._id}}">
+            {{#if follower}}
+                <p><button class="btn btn-warning" id="unfollow">Following</button></p>
+            {{else}}
+                <p><button class="btn btn-success" id="follow">Follow</button></p>
+            {{/if}}
+            
+        {{/if}}
+    </div>
+</div>
+
+<br><br>
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab" href="#menu1">Followers</a></li>
+  <li><a data-toggle="tab" href="#menu2">Following</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+      <div class="row" id="tweets">
+        {{#each tweets}}
+        <div class="col-md-12">
+            
+            <div class="tweets" >
+                
+                <div class="col-md-4">
+                    <a href="/user/{{ owner._id }}"><img src="{{ owner.photo }}"></a>
+                </div>
+                <div class="col-md-8">
+                    <h4>{{ owner.name }}</h4>
+                    <p>{{ content }}</p>
+                </div>
+                
+            </div>
+            
+        </div>
+        {{/each}}
+    </div>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    {{#each foundUser.followers}}
+    <div class="col-md-12">
+        
+        <div class="tweets" >
+            
+            <div class="col-md-4">
+                <a href="/user/{{ id }}"><img src="{{ photo }}"></a>
+            </div>
+            <div class="col-md-8">
+                <h4>{{ name }}</h4>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    {{/each}}
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    {{#each foundUser.following}}
+    <div class="col-md-12">
+        
+        <div class="tweets" >
+            
+            <div class="col-md-4">
+                <a href="#"><img src="{{ photo }}"></a>
+            </div>
+            <div class="col-md-8">
+                <h4>{{ name }}</h4>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    {{/each}}
+  </div>
+</div>
